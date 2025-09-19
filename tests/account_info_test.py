@@ -51,4 +51,8 @@ def test_signup_user_success():
 
         assert page.locator('a:has-text("Logged in as Test33User")').is_visible()
 
+        print("User signup successful")
+        print("User: Test33User")
+        print("Email: tet333us232er123@example.com")
+
         browser.close()
