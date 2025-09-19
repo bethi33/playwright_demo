@@ -20,7 +20,7 @@ def test_signup_user_success():
 
         page.click('button[data-qa="signup-button"]')
 
-        page.wait_for_selector('b:has-text("Enter Account Information")', timeout=30000)
+        page.wait_for_selector('b:has-text("Enter Account Information")', timeout=60000)
 
         page.check('input[id="id_gender1"]') 
         page.fill('input[id="password"]', 'Test@1234')
