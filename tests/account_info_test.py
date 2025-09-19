@@ -53,4 +53,6 @@ def test_signup_user_success():
 
         print("User signup successful")
         print("User: Test33User")
+        print("Email: tet333us232er123@example.com")
+        print("Password: Test@1234")
         browser.close()
