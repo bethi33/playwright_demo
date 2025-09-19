@@ -17,7 +17,7 @@ def test_login_validata():
         page.click('button[data-qa="login-button"]')
 
         assert page.locator('a:has-text("Logged in as fireai")').is_visible()
-
+        print()
         print("Login successful")
 
 def test_incorrect_email_And_password():
