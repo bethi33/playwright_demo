@@ -9,58 +9,58 @@ def open_page():
     page.goto("https://automationexercise.com", timeout=90000, wait_until="networkidle")
     return p, browser, context, page
 
-# def test_click_on_product_button():
-#     p, browser, context, page = open_page()
-#     try:
-#         page.click('a[href="/products"]')
-#         expect(page.locator('h2:has-text("All Products")')).to_be_visible()
-#         print("Navigated to Products page successfully")
-#     finally:
-#         browser.close()
-#         p.stop()
+def test_click_on_product_button():
+    p, browser, context, page = open_page()
+    try:
+        page.click('a[href="/products"]')
+        expect(page.locator('h2:has-text("All Products")')).to_be_visible()
+        print("Navigated to Products page successfully")
+    finally:
+        browser.close()
+        p.stop()
 
-# def test_click_on_first_product_view_button():
-#     p, browser, context, page = open_page()
-#     try:
-#         page.click('a[href="/products"]')
-#         expect(page.locator('h2:has-text("All Products")')).to_be_visible()
-#         page.click('a[href="/product_details/1"]')
-#         expect(page.locator('h2:has-text("Blue Top")')).to_be_visible()
-#         print("Navigated to first product details page successfully")
-#     finally:
-#         browser.close()
-#         p.stop()
+def test_click_on_first_product_view_button():
+    p, browser, context, page = open_page()
+    try:
+        page.click('a[href="/products"]')
+        expect(page.locator('h2:has-text("All Products")')).to_be_visible()
+        page.click('a[href="/product_details/1"]')
+        expect(page.locator('h2:has-text("Blue Top")')).to_be_visible()
+        print("Navigated to first product details page successfully")
+    finally:
+        browser.close()
+        p.stop()
 
-# def test_verify_product_details():
-#     p, browser, context, page = open_page()
-#     try:
-#         page.click('a[href="/products"]')
-#         expect(page.locator('h2:has-text("All Products")')).to_be_visible()
-#         page.click('a[href="/product_details/1"]')
-#         expect(page.locator('h2:has-text("Blue Top")')).to_be_visible()
-#         expect(page.locator('p:has-text("Category: Women > Tops")')).to_be_visible()
-#         expect(page.get_by_text("Rs. 500", exact=True)).to_be_visible()
-#         expect(page.locator('b:has-text("Availability:")')).to_be_visible()
-#         print("Product details verified successfully")
-#     finally:
-#         browser.close()
-#         p.stop()
+def test_verify_product_details():
+    p, browser, context, page = open_page()
+    try:
+        page.click('a[href="/products"]')
+        expect(page.locator('h2:has-text("All Products")')).to_be_visible()
+        page.click('a[href="/product_details/1"]')
+        expect(page.locator('h2:has-text("Blue Top")')).to_be_visible()
+        expect(page.locator('p:has-text("Category: Women > Tops")')).to_be_visible()
+        expect(page.get_by_text("Rs. 500", exact=True)).to_be_visible()
+        expect(page.locator('b:has-text("Availability:")')).to_be_visible()
+        print("Product details verified successfully")
+    finally:
+        browser.close()
+        p.stop()
 
-# def test_add_product_to_cart():
-#     p, browser, context, page = open_page()
-#     try:
-#         page.click('a[href="/products"]')
-#         expect(page.locator('h2:has-text("All Products")')).to_be_visible()
-#         page.click('a[href="/product_details/1"]')
-#         expect(page.locator('h2:has-text("Blue Top")')).to_be_visible()
-#         page.fill('input[id="quantity"]', '4')
-#         page.click('button:has-text("Add to cart")')
-#         page.wait_for_selector('div#cartModal', timeout=30000)
-#         expect(page.locator('div#cartModal')).to_be_visible()
-#         print("Product added to cart successfully")
-#     finally:
-#         browser.close()
-#         p.stop()
+def test_add_product_to_cart():
+    p, browser, context, page = open_page()
+    try:
+        page.click('a[href="/products"]')
+        expect(page.locator('h2:has-text("All Products")')).to_be_visible()
+        page.click('a[href="/product_details/1"]')
+        expect(page.locator('h2:has-text("Blue Top")')).to_be_visible()
+        page.fill('input[id="quantity"]', '4')
+        page.click('button:has-text("Add to cart")')
+        page.wait_for_selector('div#cartModal', timeout=30000)
+        expect(page.locator('div#cartModal')).to_be_visible()
+        print("Product added to cart successfully")
+    finally:
+        browser.close()
+        p.stop()
 
 def test_view_cart_after_adding_product():
     p, browser, context, page = open_page()
