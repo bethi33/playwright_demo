@@ -98,7 +98,80 @@ def test_view_cart_after_adding_product():
 
         page.click('button:has-text("Pay and Confirm Order")')
         expect(page.locator('p:has-text("Congratulations! Your order has been confirmed!")')).to_be_visible()
-        print("Order placed successfully!")
+
+        page.click('a:has-text("Download Invoice")')
+        expect(page.locator('h2:has-text("Invoice")')).to_be_visible()
+        expect(page.locator('p:has-text("Invoice #")')).to_be_visible()
+        expect(page.locator('p:has-text("Date:")')).to_be_visible()
+        expect(page.locator('p:has-text("Total:")')).to_be_visible()
+        print("Checkout process completed successfully")
     finally:
         browser.close()
         p.stop()
+
+def test_product_categories():
+    p, browser, context, page = open_page()
+    try:
+        page.click('a[href="/products"]')
+        expect(page.locator('h2:has-text("All Products")')).to_be_visible()
+        page.click('a[href="/category_products/1"]')
+        expect(page.locator('h2:has-text("Category: Women")')).to_be_visible()
+    finally:
+        browser.close()
+        p.stop()
+
+def test_view_card_brand():
+    p, browser, context, page = open_page()
+    try:
+        page.click('a[href="/products"]')
+        expect(page.locator('h2:has-text("All Products")')).to_be_visible()
+        page.click('a[href="/brand_products/Polo"]')
+        expect(page.locator('h2:has-text("Brand - Polo Products")')).to_be_visible()
+    finally:
+        browser.close()
+        p.stop()
+
+def test_reviews_on_product():
+    p, browser, context, page = open_page()
+    try:
+        page.click('a[href="/products"]')
+        expect(page.locator('h2:has-text("All Products")')).to_be_visible()
+        page.click('a[href="/product_details/1"]')
+        expect(page.locator('h2:has-text("Blue Top")')).to_be_visible()
+        page.fill('input[id="name"]', 'Fire AI')
+        page.fill('input[id="email"]', 'fireai@gmail.com')
+        page.fill('textarea[id="review"]', 'Great product!')
+        page.click('button[type="submit"]')
+        expect(page.locator('p:has-text("Thank you for your review!")')).to_be_visible()
+    finally:
+        browser.close()
+        p.stop()
+
+def test_verify_scroll_up_button():
+    p, browser, context, page = open_page()
+    try:
+        page.click('a[href="/products"]')
+        expect(page.locator('h2:has-text("All Products")')).to_be_visible()
+        page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
+        page.wait_for_timeout(2000)  # Wait for 2 seconds to ensure the button appears
+        page.click('a#scrollUp')
+        page.wait_for_timeout(2000)  # Wait for 2 seconds to observe the scroll up action
+        print("Scroll up button verified successfully")
+    finally:
+        browser.close()
+        p.stop()
+
+def test_verify_scroll_up_without_arrow_button():
+    p, browser, context, page = open_page()
+    try:
+        page.click('a[href="/products"]')
+        expect(page.locator('h2:has-text("All Products")')).to_be_visible()
+        page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
+        page.wait_for_timeout(2000)  # Wait for 2 seconds to ensure the button appears
+        page.evaluate("window.scrollTo(0, 0)")  # Scroll back to top without clicking the button
+        page.wait_for_timeout(2000)  # Wait for 2 seconds to observe the scroll up action
+        print("Scroll up without arrow button verified successfully")
+    finally:
+        browser.close()
+        p.stop()
+
