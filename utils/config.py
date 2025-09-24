@@ -1,12 +1,12 @@
-BASE_URL = "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
+BASE_URL = "https://automationexercise.com"
 
 USER_CREDENTIALS = {
     "valid_user": {
-        "username": "Admin",
-        "password": "admin123"
+        "Email": "fireai@gmail.com",
+        "password": "fireai"
     },
     "invalid_user": {
-        "username": "wrong_user",
+        "Email": "wrong_user",
         "password": "wrong_pass"
     }
 }
