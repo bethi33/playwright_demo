@@ -5,7 +5,7 @@ def open_page():
     browser = p.chromium.launch(headless=False, slow_mo=500)
     context = browser.new_context(viewport=None)
     page = context.new_page()
-    page.goto("https://automationexercise.com", timeout=6000,wait_until="networkidle")
+    page.goto("https://automationexercise.com", timeout=60000, wait_until="networkidle")
     return p, browser, context, page
 
 def do_login(page, email, password):
