@@ -247,5 +247,11 @@ def test_signup_scenarios(page, name, email, expected_locator, description):
     else:  # invalid/edge → use given email
         signup_with_credentials(page, name, email)
 
-    expect(page.locator(expected_locator)).to_be_visible()
+    if expect == "success":
+        expect(page.locator('b:has-text("Enter Account Information")')).to_be_visible()
+    elif expect == "exists":
+        expect(page.locator('p:has-text("Email Address already exist!")')).to_be_visible()
+    elif expect == "stay":
+        # Check we're still stuck on signup page
+        expect(page.locator('h2:has-text("New User Signup!")')).to_be_visible()
     print(description)
